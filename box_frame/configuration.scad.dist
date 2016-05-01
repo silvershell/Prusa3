@@ -109,7 +109,7 @@ i_want_to_use_single_plate_dxf_and_make_my_z_weaker = 1;
 y_threaded_rod_long_r = 4.4;
 
 //Use z_axis_threaded_rod_type_m8 for M8 or z_axis_threaded_rod_type_m5 for M5
-z_axis_threaded_rod_type = z_axis_threaded_rod_type_m5;
+z_axis_threaded_rod_type = z_axis_threaded_rod_type_m8;
 
 // Thickness of the boards that make the box frame.
 
