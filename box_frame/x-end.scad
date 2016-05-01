@@ -76,15 +76,6 @@ module x_end_base(vfillet=[3, 3, 3, 3], thru=true, len=40, offset=0){
                 //rotate([0, 0, 0]) translate([0, -9.5, 0])
                 translate([z_delta, 0, 0]) render(convexity = 5) linear(bushing_z, bearing_height);
                 // Nut trap
-                // before m5
-                //translate([-2, 18, 5]) cube_fillet([20, 14, 10], center = true, vertical=[8, 0, 0, 5]);
-
-                // after m5
-                //translate([-12, 11, 0]) cube_fillet([20, 14, 10], vertical=[8, 0, 0, 5]);
-
-                // after m8
-                //translate([-11, 10.5, 0]) cube_fillet([20, 16, 10], vertical=[8, 0, 0, 5]);
-
                 translate(z_axis_threaded_rod_type[3]) cube_fillet(z_axis_threaded_rod_type[4], vertical=[8, 0, 0, 5]);
             }
         }
@@ -109,14 +100,10 @@ module x_end_base(vfillet=[3, 3, 3, 3], thru=true, len=40, offset=0){
                 //rod
                 translate([0, 0, -1]) cylinder(h=(4.1 / 2 + 5), r=z_axis_threaded_rod_type[1], $fn=32);
                 //nut
-                //translate([0, 0, 9]) cylinder(r=z_axis_threaded_rod_type[1], h=14.1, center = true, $fn=6);
                 translate([0, 0, 2]) cylinder(r=z_axis_threaded_rod_type[2], h=200, $fn=6);
 
             }
         }
-
-        // // To fix linear bearing with bolt
-        // translate([10,13,10]) rotate([90,0,0]) cylinder(d=6.01+0.2, h=2.4+0.2, $fn=6);
     }
     //threaded rod
     translate([0, 17, 0]) %cylinder(h = 70, r=z_axis_threaded_rod_type[0]/2+0.2);
