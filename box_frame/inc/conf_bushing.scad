@@ -62,4 +62,4 @@ bearing_608_washers = [22, 10, 8, 0, "608 bearing"];
 // [threaded_rod_diametar, threaded_rod_hole_r, nut_diameter, rod_trap_translate, rod_trap_cube_fillet ]
 
 z_axis_threaded_rod_type_m5 = [5, 3, 4.6, [-12, 11, 0], [20, 14, 10]];
-z_axis_threaded_rod_type_m8 = [8, 4.5, (14.38+1)/2, [-11, 10.5, 0], [20, 16, 10]];
+z_axis_threaded_rod_type_m8 = [8, 4.5, (14.38+0.5)/2, [-11, 9.3, 0], [20, 16, 10]];
