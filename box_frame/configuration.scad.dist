@@ -81,6 +81,11 @@ idler_bearing = bearing_623;
 carriage_l_base = 50;
 
 
+// Select spring hole for wade idler ******************************************
+
+wade_idler_mounting_spring_hole_diameter = 8;   // 0: disable, other number: spring hole diameter
+
+
 // Fillets ********************************************************************
 // fillets are rounded corners of boxes. The right engineering term is probably radius
 // but cad software calls it fillet.
