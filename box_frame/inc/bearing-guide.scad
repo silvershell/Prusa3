@@ -19,8 +19,7 @@ include <../configuration.scad>
 include <functions.scad>
 
 //guiding_wall_thickness of guiding wall
-guiding_wall_thickness=layer_height * 4;
-
+guiding_wall_thickness=round(1.2 / layer_height) * layer_height;
 
 height = max(belt_width, idler_bearing[1]) + guiding_wall_thickness;
 //How much the guiding wall overlaps the bearing wall (to the center)
