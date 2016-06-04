@@ -126,6 +126,8 @@ hotend_contact_h = 5.5+0.4;         // height for E3D v6 + printer margin
 
 use_groovemount_fanmount = true;
 
+use_direct_fixed_endstop_with_m2 = false;
+
 // Thickness of the boards that make the box frame.
 
 // in y-axis-corner it governs the height of the corners by adjusting the

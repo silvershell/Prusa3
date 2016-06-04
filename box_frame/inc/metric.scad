@@ -32,6 +32,10 @@ m3_nut_diameter = 5.3;
 m3_nut_diameter_horizontal = 6.8;
 m3_washer_diameter = 6.9;
 
+m2_diameter = 2.4;
+m2_nut_diameter_horizontal = 5.0;
+
+
 // Motors
 
 motor_shaft = 5.5;

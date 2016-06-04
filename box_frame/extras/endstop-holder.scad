@@ -1,4 +1,4 @@
-// PRUSA Mendel  
+// PRUSA Mendel
 // Endstop holder
 // Used to attach endstops to 8mm rods
 // GNU GPL v3
@@ -49,15 +49,27 @@ module endstop(shaft_radius){
 	    translate([17, 12+opening_size, 5]) rotate([90, 0, 0]) cylinder(h =5, r = m3_nut_diameter_horizontal/2, $fn = 6);
 
 	    translate([17, 17, 5]) rotate([90, 0, 0]) cylinder(h =20, r = m3_diameter/2, $fn = segments);
+
 	    // Endstop holders
-	    translate([-5, 17, 5]) rotate([90, 0, 0]) cylinder(h =20, r = m3_diameter/2, $fn = segments);
-	    translate([-(5+screw_hole_spacing), 17, 5]) rotate([90, 0, 0]) cylinder(h =20, r = m3_diameter/2, $fn = segments);
-	    translate([-(5+screw_hole_spacing2), 17, 5]) rotate([90, 0, 0]) cylinder(h =20, r = m3_diameter/2, $fn = segments);
-	
+      if( use_direct_fixed_endstop_with_m2 ){
+         for( z = [0:1] ){
+          for( x = [0:3] ){
+            translate([-7 -6.5*x, 0, 2.8+4.4*z]) rotate([-90, 0, 0]) {
+              cylinder(h =20, r = m2_diameter/2, $fn = segments);
+              cylinder(h = 1, r = m2_nut_diameter_horizontal/2, $fn = 6);
+              translate([0,0,3]) cylinder(h = 1, r = m2_nut_diameter_horizontal/2, $fn = 6);
+            }
+          }
+        }
+
+      }else{
+        translate([-5, 17, 5]) rotate([90, 0, 0]) cylinder(h =20, r = m3_diameter/2, $fn = segments);
+        translate([-(5+screw_hole_spacing), 17, 5]) rotate([90, 0, 0]) cylinder(h =20, r = m3_diameter/2, $fn = segments);
+        translate([-(5+screw_hole_spacing2), 17, 5]) rotate([90, 0, 0]) cylinder(h =20, r = m3_diameter/2, $fn =  segments);
+      }
     }
 }
 
 endstop(bushing_xy[0]);
 translate([0,22,0]) endstop(bushing_xy[0]);
 translate([0,44,0]) endstop(bushing_z[0]);
-
