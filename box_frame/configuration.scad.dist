@@ -98,11 +98,11 @@ wade_idler_mounting_spring_hole_diameter = 8;   // 0: disable, other number: spr
 use_fillets = 1;
 
 // set to 0 for single plate (affects z axis and screws that attach RP parts to frame)
-i_am_box = 0;
+i_am_box = 1;
 
 // if you do your own plate and can move bottom Z screws 5mm up set this to 0 to
 // get stronger motor mount. Only for i_am_box = 0
-i_want_to_use_single_plate_dxf_and_make_my_z_weaker = 1;
+i_want_to_use_single_plate_dxf_and_make_my_z_weaker = 0;
 
 
 // Radius of long threaded rod on Y frame
@@ -115,6 +115,12 @@ y_threaded_rod_long_r = 4.4;
 
 //Use z_axis_threaded_rod_type_m8 for M8 or z_axis_threaded_rod_type_m5 for M5
 z_axis_threaded_rod_type = z_axis_threaded_rod_type_m8;
+
+// Smooth rod diameter
+smooth_rod_diameter = 8;
+
+//hotend_contact_h = 4.4;
+hotend_contact_h = 5.5+0.4;         // height for E3D v6 + printer margin
 
 // Thickness of the boards that make the box frame.
 
