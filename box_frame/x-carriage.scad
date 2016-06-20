@@ -29,7 +29,7 @@ carriage_l_real = max((bushing_xy[2] > 30 ? carriage_l_adjusted : (2 * bushing_x
 carriage_hole_to_side = max(3, ((carriage_l_real - carriage_l_base) / 2));
 echo(carriage_hole_to_side);
 carriage_l = carriage_l_base + 2 * carriage_hole_to_side;
-
+carriage_center_adjust = 0;
 
 bushing_carriage_len = adjust_bushing_len(bushing_carriage, 21, layer_height * 9);
 
@@ -49,7 +49,7 @@ module x_carriage(){
                     translate([-8, -1, 0]) cube_fillet([xaxis_rod_distance + 16, 6, bushing_carriage_len + 3], radius=2);
                 }
 
-                translate([45/2,0,0]){
+                translate([carriage_center_adjust+45/2,0,0]){
 
                     //fill the space where the belt is, as it will be substracted at later point and we want it stiff here.
                     //belt smooth side
@@ -80,30 +80,32 @@ module x_carriage(){
                 linear_negative(bushing_xy, carriage_l);
             }
             // extruder mounts
-            translate([20, -2, carriage_hole_to_side]) {
-                rotate([90, 0, 0]) cylinder(r=1.8, h=32, center=true,$fn=small_hole_segments);
-                translate([0, 7, 0]) rotate([90, 60, 0]) cylinder(r=3.4, h=5, $fn=6, center=true);
-            }
-            translate([20, -2, carriage_hole_to_side + 30]) {
-                rotate([90, 0, 0]) cylinder(r=1.8, h=32, center=true,$fn=small_hole_segments);
-                translate([0, 7, 0]) rotate([90, 60, 0]) cylinder(r=3.4, h=5, $fn=6, center=true);
-            }
-            if (carriage_l >= 50 + 2 * carriage_hole_to_side) {
-                translate([20, -2, carriage_hole_to_side + 30 + 20]) {
+            translate([carriage_center_adjust,0,0]){
+                translate([20, -2, carriage_hole_to_side]) {
                     rotate([90, 0, 0]) cylinder(r=1.8, h=32, center=true,$fn=small_hole_segments);
                     translate([0, 7, 0]) rotate([90, 60, 0]) cylinder(r=3.4, h=5, $fn=6, center=true);
                 }
-            }
-            if (carriage_l >= 80 + 2 * carriage_hole_to_side) {
-                translate([20, -2, carriage_hole_to_side + 30 + 20 + 30]) {
+                translate([20, -2, carriage_hole_to_side + 30]) {
                     rotate([90, 0, 0]) cylinder(r=1.8, h=32, center=true,$fn=small_hole_segments);
                     translate([0, 7, 0]) rotate([90, 60, 0]) cylinder(r=3.4, h=5, $fn=6, center=true);
                 }
-            }
-            //belt insert
-            translate([-8.5 + 45 / 2, 0, 0]) mirror([1, 0, 0]) {
-                belt(carriage_l, 5);
-                %belt(carriage_l);
+                if (carriage_l >= 50 + 2 * carriage_hole_to_side) {
+                    translate([20, -2, carriage_hole_to_side + 30 + 20]) {
+                        rotate([90, 0, 0]) cylinder(r=1.8, h=32, center=true,$fn=small_hole_segments);
+                        translate([0, 7, 0]) rotate([90, 60, 0]) cylinder(r=3.4, h=5, $fn=6, center=true);
+                    }
+                }
+                if (carriage_l >= 80 + 2 * carriage_hole_to_side) {
+                    translate([20, -2, carriage_hole_to_side + 30 + 20 + 30]) {
+                        rotate([90, 0, 0]) cylinder(r=1.8, h=32, center=true,$fn=small_hole_segments);
+                        translate([0, 7, 0]) rotate([90, 60, 0]) cylinder(r=3.4, h=5, $fn=6, center=true);
+                    }
+                }
+                //belt insert
+                translate([-8.5 + 45 / 2, 0, 0]) mirror([1, 0, 0]) {
+                    belt(carriage_l, 5);
+                    %belt(carriage_l);
+                }
             }
         }
     }

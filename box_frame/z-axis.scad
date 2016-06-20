@@ -22,23 +22,30 @@
 include <configuration.scad>
 
 module zmotorholder(thickness=(i_am_box == 0 ? 38 : 23), bottom_thickness=5){
+    //diffY = 0.9;
+    diffY = 1.0;
+    //diffY = 0;
+    
     difference(){
         union(){
             // Motor holding part
             difference(){
                 union(){
                     zrodholder(thickness=thickness, xlen=45, ylen=44, zdelta=((i_want_to_use_single_plate_dxf_and_make_my_z_weaker == 0) ? 0 : 5));
-                    translate([board_to_xz_distance, board_to_xz_distance, 0]) {
+                    translate([board_to_xz_distance, board_to_xz_distance + diffY, 0]) {
                         nema17(places=[0, 1, 1, 1], h=bottom_thickness + layer_height, $fn=23, shadow=layer_height + 2);
                     }
                 }
 
                 // motor screw holes
-                translate([board_to_xz_distance, board_to_xz_distance, thickness]) {
+                translate([board_to_xz_distance, board_to_xz_distance + diffY, thickness]) {
                     mirror([0, 0, 1]) translate([0, 0, thickness-8])
                         nema17(places=[0, 1, 1, 1], holes=true, h=bottom_thickness + 1, $fn=small_hole_segments);
                         //shadow=-6 + layer_height);
                 }
+                
+                translate([10.4, 40.5 + diffY, -5.1]) cylinder(d=3.2, h=30, $fn=small_hole_segments);
+                translate([39.5 + diffY, 11.4, -5.1]) cylinder(d=3.2, h=30, $fn=small_hole_segments);
             }
         }
     }
@@ -114,7 +121,14 @@ module zrodholder(thickness=(i_am_box == 0 ? 14 : 15), bottom_thickness=5, ylen=
         }
     }
 }
-translate([10, -50, 0]) zmotorholder();
-translate([0, 50, 0]) mirror([0, 1, 0]) zmotorholder();
-translate([67, 14, 0]) rotate([0,0,90]) zrodholder();
-translate([77, -14, 0]) rotate([0, 0, -90]) mirror([0, 1, 0]) zrodholder();
+
+
+intersection(){
+  *translate([-500,-500,0]) cube([1000,1000, 0.6]);
+  union(){
+    *translate([10, -50, 0]) zmotorholder();
+    translate([0, 50, 0]) mirror([0, 1, 0]) zmotorholder();
+    *translate([67, 14, 0]) rotate([0,0,90]) zrodholder();
+    *translate([77, -14, 0]) rotate([0, 0, -90]) mirror([0, 1, 0]) zrodholder();
+  }
+}
